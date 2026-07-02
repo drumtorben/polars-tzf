@@ -1,0 +1,14 @@
+/target
+*.so
+*.pyd
+__pycache__/
+.venv/
+dist/
+
+target/
+.venv/
+
+# local-only: credentials and data files
+.envrc
+*.parquet
+.ipynb_checkpoints/

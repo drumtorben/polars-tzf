@@ -1,0 +1,37 @@
+[build-system]
+requires = ["maturin>=1.5,<2.0"]
+build-backend = "maturin"
+
+[project]
+name = "polars-tzf"
+version = "0.1.0"
+description = "Fast lat/lng to IANA timezone lookup for Polars, powered by tzf-rs"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+keywords = ["polars", "timezone", "tzf", "geospatial", "plugin"]
+classifiers = [
+    "Programming Language :: Rust",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Scientific/Engineering :: GIS",
+]
+dependencies = [
+    "polars",
+]
+
+[project.urls]
+Repository = "https://github.com/drumtorben/polars-tzf"
+Issues = "https://github.com/drumtorben/polars-tzf/issues"
+
+[dependency-groups]
+dev = [
+    "maturin>=1.5",
+]
+
+[tool.maturin]
+module-name = "polars_tzf._internal"
