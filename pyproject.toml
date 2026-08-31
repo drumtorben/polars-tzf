@@ -4,7 +4,7 @@ build-backend = "maturin"
 
 [project]
 name = "polars-tzf"
-version = "0.1.0"
+version = "0.2.0"
 description = "Fast lat/lng to IANA timezone lookup for Polars, powered by tzf-rs"
 readme = "README.md"
 license = { file = "LICENSE" }
@@ -31,6 +31,9 @@ Issues = "https://github.com/drumtorben/polars-tzf/issues"
 [dependency-groups]
 dev = [
     "maturin>=1.5",
+    "pytest>=8",
+    "h3>=4",
+    "ipykernel>=6",
 ]
 
 [tool.maturin]
