@@ -173,4 +173,5 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: wheels-*/*
+          generate_release_notes: true
           prerelease: ${{ contains(github.ref, 'alpha') || contains(github.ref, 'beta') || contains(github.ref, 'rc') }}
