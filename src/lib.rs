@@ -10,7 +10,7 @@ use std::cell::RefCell;
 use std::sync::LazyLock;
 use tzf_rs::DefaultFinder;
 
-// The finder is expensive to build (y_stripes index ~120 MB) and Send+Sync,
+// The finder is expensive to build (polygon index ~60 MB) and Send+Sync,
 // so build it exactly once per process and share it across all threads.
 static FINDER: LazyLock<DefaultFinder> = LazyLock::new(DefaultFinder::new);
 
@@ -32,7 +32,7 @@ fn lookup(lng: f64, lat: f64) -> Option<&'static str> {
 }
 
 /// Upper bound on memoised cells per worker thread. At 2^19 entries the map
-/// costs roughly 8 MB, next to the ~100 MB polygon index already resident.
+/// costs roughly 8 MB, next to the ~60 MB polygon index already resident.
 const CACHE_CAPACITY: usize = 1 << 19;
 
 /// Reserved dictionary slot standing for "no zone", so that every row has a

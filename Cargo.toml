@@ -8,13 +8,13 @@ name = "polars_tzf"
 crate-type = ["cdylib"]
 
 [dependencies]
-polars = { version = "*", default-features = false }
-pyo3 = { version = "*", features = ["extension-module", "abi3-py310"] }
-pyo3-polars = { version = "*", features = ["derive"] }
-tzf-rs = "1"
+polars = { version = "0.55", default-features = false }
+pyo3 = { version = "0.29", features = ["extension-module", "abi3-py310"] }
+pyo3-polars = { version = "0.28", features = ["derive"] }
+tzf-rs = { version = "2", default-features = false, features = ["bundled"] }
 h3o = "0.11"
 rustc-hash = "2"
-serde = { version = "*", features = ["derive"] }
+serde = { version = "1", features = ["derive"] }
 
 [profile.release]
 lto = "thin"

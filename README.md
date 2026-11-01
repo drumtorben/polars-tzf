@@ -112,7 +112,7 @@ Resolves each H3 cell to the IANA timezone containing the cell's **centre**.
 
 ## Performance
 
-- The timezone index (`tzf-rs` `DefaultFinder`) is built **once per process** and shared across all threads, so the one-time startup cost (~100 MB of polygon index) is amortized over the whole session.
+- The timezone index (`tzf-rs` `DefaultFinder`) is built **once per process** and shared across all threads, so the one-time startup cost (~60 MB of polygon index) is amortized over the whole session.
 - Lookups run in native Rust with zero Python overhead per row. Tens of millions of rows resolve in seconds on a laptop.
 - `tz_name_from_h3` memoizes on the H3 index in a **thread-local cache** and builds its output by gathering from a dictionary of zone names rather than writing one string per row. Both matter: on 3M rows over 50k distinct cells at resolution 9, throughput goes from ~5M rows/s (a plain per-row lookup) to ~160M rows/s. The cache needs no locking and survives across chunks and across calls on the same worker thread.
 - Throughput therefore tracks the number of **distinct cells**, not the row count, and it matters whether the cache is warm. *Cold* is a one-shot query, which pays to resolve every distinct cell; *warm* is what repeated calls, many row groups, or a grouped context see. Measured on 3M rows, one fresh process per row:
